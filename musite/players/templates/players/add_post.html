@@ -1,0 +1,13 @@
+{% extends 'players/home.html' %}
+{% block title %}Новая статья{% endblock %}
+{% block content %}
+<h2>Новая статья</h2>
+<br>
+<div class="form">
+    <form action="/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Добавить статью">
+    </form>
+</div>
+{% endblock %}

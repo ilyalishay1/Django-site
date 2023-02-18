@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Главная страница{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'players/css/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4">Меню</span>
+      </a>
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{% url 'home' %}" class="nav-link active" aria-current="page">Главная</a></li>
+        <li class="nav-item"><a href="{% url 'players_now' %}" class="nav-link">Нынешние игроки</a></li>
+        <li class="nav-item"><a href="{% url 'all_time_players' %}" class="nav-link">Игроки за все время</a></li>
+          <li class="nav-item"><a href="{% url 'new_post' %}" class="nav-link">Добавить статью</a></li>
+      </ul>
+    </header>
+  </div>
+    {% block content %}
+    <ul class="list-articles">
+        {% for post in posts %}
+        <li><div class="article-panel">
+            <p>Категория: {{post.cat}}</p>
+            <p>Дата: {{post.date|date:"d-m-Y H:i:s"}}</p>
+        </div>
+            <br>
+            <h2>{{post.title}}</h2>
+            <br>
+            {% if post.photo %}
+            <p><img class="img.img-article-left.thumb" src="{{post.photo.url}}"></p>
+            {% endif %}
+            {% autoescape on %}
+            {{post.content|linebreaks}}
+            {% endautoescape %}
+            <br>
+            {% endfor %}
+        </li>
+    </ul>
+    {% endblock %}
+</body>
+</html>

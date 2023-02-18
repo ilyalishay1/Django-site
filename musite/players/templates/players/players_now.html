@@ -1,0 +1,23 @@
+{% extends 'players/home.html' %}
+{% block title %}Нынешние игроки{% endblock %}
+{% block content %}
+<ul class="list-articles">
+        {% for post in posts %}
+        <li><div class="article-panel">
+            <p>Категория: {{post.cat}}</p>
+            <p>Дата: {{post.date|date:"d-m-Y H:i:s"}}</p>
+        </div>
+            <br>
+            <h2>{{post.title}}</h2>
+            <br>
+            {% if post.photo %}
+            <p><img class="img.img-article-left.thumb" src="{{post.photo.url}}"></p>
+            {% endif %}
+            {% autoescape on %}
+            {{post.content|linebreaks}}
+            {% endautoescape %}
+            <br>
+            {% endfor %}
+        </li>
+    </ul>
+{% endblock %}

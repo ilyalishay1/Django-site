@@ -1,0 +1,37 @@
+body {
+    font-family: Arial;
+    margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+}
+
+img {
+    max-width: 550px;
+    height: auto;
+    float: left;
+    padding: 10px;
+}
+
+img.img-article-left.thumb {
+	max-width: 150px;
+	height: auto;
+}
+
+div.article-panel {
+    background: #eee;
+    padding: 5px 10px 5px 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    color: #555;
+}
+
+ul.list-articles {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+h2 {
+    text-align: center;
+}
